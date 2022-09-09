@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { Buy } from './components/buy';
+import { Open } from './components/open';
 import { Table } from './components/table';
 import { parse } from './lib/parse';
 
@@ -12,6 +13,7 @@ const arr = [
 
 function App() {
   const [lots, setLots] = useState([]);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const init = async () => {
@@ -27,12 +29,12 @@ function App() {
         <div className="header-top">
           <img src="/img/logo.png" alt="logo" />
           <div className="login-button">
-            LOGIN
+            CONNECT
           </div>
         </div>
         <div className="menu">
-          <span style={{borderRight: '1px solid #4725B1'}}>Home</span>
-          <span>My Treasures</span>
+          <span onClick={setOpen.bind(null, false)} style={{borderRight: '1px solid #4725B1', opacity: open ? .5 : 1}}>Home</span>
+          <span onClick={setOpen.bind(null, true)} style={{opacity: open ? 1 : .5}}>My Treasures</span>
         </div>
       </div>
 
@@ -45,7 +47,7 @@ function App() {
           ))}
         </div>
 
-        <Buy />
+        {open ? <Open /> : <Buy />}
 
       </div>
 

@@ -23,6 +23,8 @@
   justify-content: center;
   cursor: pointer;
   text-shadow: 0px 3px 0px rgba(59, 16, 179, 0.6);
+  font-size: 45px;
+  font-family: '000webfont';
 }
 
 .menu {
@@ -66,10 +68,11 @@
   width: 225px;
   height: 50px;
   display: flex;
-  align-items: center;
   justify-content: center;
   margin-bottom: 100px;
   cursor: pointer;
+  font-size: 45px;
+  font-family: '000webfont';
 }
 
 .table-wrap {
@@ -107,4 +110,54 @@
   justify-content: center;
   align-items: center;
   padding: 30px 0;
+}
+
+.box-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: 25px;
+}
+
+.box {
+  width: 290px;
+  margin: 10px 25px;
+}
+
+.box-name {
+  width: 100%;
+  color: #0FA9F0;
+  background: #210472;
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.25);
+  font-size: 24px;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.box-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(31, 4, 99, 0.5);
+  padding-bottom: 15px;
+}
+
+.box-image {
+  margin-top: 20px;
+  width: 190px;
+}
+
+.box-open {
+  background-image: url(../public/img/open-box.png);
+  width: 225px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  color: #ffffff;
+  text-shadow: 0px 2px 0px rgba(59, 16, 179, 0.6);
+  cursor: pointer;
+  font-size: 45px;
+  font-family: '000webfont';
 }
