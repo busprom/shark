@@ -1,38 +1,110 @@
-.App {
-  text-align: center;
+.app {
+  background-color: #15043B;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+  width: 100%;
+  background-image: url(../public/img/header.png);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header-top {
+  padding: 40px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+}
+
+.login-button {
+  width: 165px;
+  height: 60px;
+  background-image: url(../public/img/login.png);
+  color: #ffffff;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  cursor: pointer;
+  text-shadow: 0px 3px 0px rgba(59, 16, 179, 0.6);
 }
 
-.App-link {
-  color: #61dafb;
+.menu {
+  height: 50px;
+  margin-top: 50px;
+  background-color: #2D0A81;
+  color: #8573F0;
+  display: flex;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.menu span {
+  padding: 0 18px;
+  cursor: pointer;
+}
+
+.main {
+  background-image: url(../public/img/main-bg.png);
+}
+
+.games {
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.games img {
+  width: 31vw;
+}
+
+.main-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.buy-button {
+  color: #ffffff;
+  background-image: url(../public/img/buy-bg.png);
+  width: 225px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 100px;
+  cursor: pointer;
+}
+
+.table-wrap {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 80px;
+}
+
+.table {
+  border-collapse: collapse;
+}
+
+.table th {
+  padding: 20px 80px;
+  background-color: #1A0256;
+  color: #5641D9;
+}
+
+.table td {
+  color: #9584FD;
+  padding: 10px 80px;
+}
+
+.quity {
+  display: flex;
+  align-items: center;
+}
+
+.footer {
+  background-color: #2C078B;
+  color: #ffffff;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
 }
