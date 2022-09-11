@@ -12,3 +12,27 @@ body {
   margin: 0;
   font-family: 'GothamMedium', sans-serif;
 }
+
+* {
+	box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+	background: none;
+}
+
+
+::-webkit-scrollbar-thumb {
+	background-color: #2C078B;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 50%;
+	border-radius: 5px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  opacity: 0.5;
+}

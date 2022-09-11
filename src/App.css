@@ -17,14 +17,23 @@
   width: 165px;
   height: 60px;
   background-image: url(../public/img/login.png);
+  background-size: 100% 100%;
   color: #ffffff;
   display: flex;
-  align-items: center;
+  padding-top: 3px;
   justify-content: center;
   cursor: pointer;
   text-shadow: 0px 3px 0px rgba(59, 16, 179, 0.6);
   font-size: 45px;
   font-family: '000webfont';
+  transition: .1s;
+  opacity: .8;
+}
+.login-button:active {
+  height: 58px;
+}
+.login-button:hover {
+  opacity: 1;
 }
 
 .menu {
@@ -34,11 +43,16 @@
   color: #8573F0;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-.menu span {
+.menu button {
+  color: #8573F0;
+  border: none;
+  outline: none;
   padding: 0 18px;
   cursor: pointer;
+  background: none;
 }
 
 .main {
@@ -53,36 +67,78 @@
 
 .games img {
   width: 31vw;
+  opacity: .8;
+  transition: .2s;
+}
+.games img:hover {
+  opacity: 1;
 }
 
 .main-box {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.one-box {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.success {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #000000;
+  color: #ffffff;
+  width: 100%;
+  height: 100%;
+  opacity: .6;
+  display: flex;
+  font-size: 35px;
+  padding: 30px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
 }
 
 .buy-button {
   color: #ffffff;
   background-image: url(../public/img/buy-bg.png);
+  background-size: 100% 100%;
   width: 225px;
-  height: 50px;
+  height: 60px;
   display: flex;
   justify-content: center;
+  padding-top: 3px;
   margin-bottom: 100px;
   cursor: pointer;
   font-size: 45px;
   font-family: '000webfont';
+  opacity: .8;
+  z-index: 1;
+}
+.buy-button:active {
+  height: 58px;
+}
+.buy-button:hover {
+  opacity: 1;
 }
 
 .table-wrap {
   display: flex;
   justify-content: center;
   padding-bottom: 80px;
+  overflow: auto;
 }
 
 .table {
   border-collapse: collapse;
+  white-space: nowrap;
 }
 
 .table th {
@@ -94,6 +150,13 @@
 .table td {
   color: #9584FD;
   padding: 10px 80px;
+}
+
+.table tr {
+  background-color: #1A0256;
+}
+.table tr:nth-child(odd) {
+  background-color: #1F0463;
 }
 
 .quity {
@@ -121,6 +184,7 @@
 }
 
 .box {
+  position: relative;
   width: 290px;
   margin: 10px 25px;
 }
@@ -151,6 +215,7 @@
 
 .box-open {
   background-image: url(../public/img/open-box.png);
+  background-size: 100% 100%;
   width: 225px;
   height: 50px;
   display: flex;
@@ -160,4 +225,53 @@
   cursor: pointer;
   font-size: 45px;
   font-family: '000webfont';
+  opacity: .8;
+}
+.box-open:active {
+  height: 48px;
+}
+.box-open:hover {
+  opacity: 1;
+}
+
+@media (max-width: 1200px) {
+  .table th {
+    padding: 20px 50px;
+  }
+  .table td {
+    padding: 10px 50px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .header-top {
+    padding: 20px;
+  }
+  .menu {
+    margin-top: 0;
+  }
+  .table th {
+    padding: 20px;
+  }
+  .table td {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 700px) {
+  .games {
+    padding: 10px;
+  }
+  .main-box img {
+    width: 95%;
+  }
+  .box-area {
+    justify-content: center;
+  }
+}
+@media (max-width: 560px) {
+  .table-wrap {
+    display: block;
+    width: 100%;
+  }
 }

@@ -3,12 +3,11 @@ import './App.css';
 import { Buy } from './components/buy';
 import { Open } from './components/open';
 import { Table } from './components/table';
-import { parse } from './lib/parse';
 
 const arr = [
-  {name: 'Kotaro Sharks', href: 'https://magiceden.io/creators/kotaro_sharks'},
+  {name: 'Submarine', href: 'http://submarine.kotarosharks.io/'},
   {name: 'Coinflip', href: 'https://coinflip.kotarosharks.io'},
-  {name: 'Submarine', href: 'http://submarine.kotarosharks.io/'}
+  {name: 'Kotaro Sharks', href: 'https://magiceden.io/creators/kotaro_sharks'}
 ];
 
 function App() {
@@ -17,24 +16,25 @@ function App() {
 
   useEffect(() => {
     const init = async () => {
-      const res = await parse();
-      if(res.lots) setLots(res.lots);
+      const game = await window.cryptomore.parse.getSIB({id: process.env.REACT_APP_GAME});
+      if(game.lots) setLots(game.lots);
     }
     init();
   }, []);
+
   return (
     <div className="app">
 
       <div className="header">
         <div className="header-top">
-          <img src="/img/logo.png" alt="logo" />
-          <div className="login-button">
+          <img onClick={setOpen.bind(null, false)} style={{cursor: 'pointer'}} src="/img/logo.png" alt="logo" />
+          {/* <div className="login-button" onClick={setOpen.bind(null, true)}>
             CONNECT
-          </div>
+          </div> */}
         </div>
         <div className="menu">
-          <span onClick={setOpen.bind(null, false)} style={{borderRight: '1px solid #4725B1', opacity: open ? .5 : 1}}>Home</span>
-          <span onClick={setOpen.bind(null, true)} style={{opacity: open ? 1 : .5}}>My Treasures</span>
+          <button onClick={setOpen.bind(null, false)} style={{borderRight: '1px solid #4725B1', opacity: open ? .5 : 1}}>Home</button>
+          <button onClick={setOpen.bind(null, true)} style={{opacity: open ? 1 : .5}}>My Treasures</button>
         </div>
       </div>
 

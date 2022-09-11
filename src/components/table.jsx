@@ -23,16 +23,16 @@ export const Table = ({ lots }) => {
                 <span> - {parseInt(k.qty)}</span>
               </td>
               <td>
-                {(parseInt(k.bonus) / 1000000000).toFixed(2)} SOL
+                {k.bonus} SOL
               </td>
               <td>
-                {parseInt((parseInt(k.qty) - parseInt(k.wins))) * 100 / tot}%
+                {parseInt((k.qty - k.wins) * 100 / tot)}%
               </td>
               <td>
-                {parseInt(k.wins)}
+                {k.wins}
               </td>
               <td>
-                {parseInt(k.qty) - parseInt(k.wins)}
+                {k.qty - k.wins}
               </td>
             </tr>
           ))}
