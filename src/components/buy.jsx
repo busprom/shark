@@ -49,6 +49,9 @@ export const Buy = () => {
         {suc && <div className="success">
           <span>{text}</span>
         </div>}
+        <a className="solscan" href="/">
+          View in SolScan
+        </a>
         <img src={load ? 'https://treasure.kotarosharks.io/6.png' : 'https://treasure.kotarosharks.io/5.png'} alt="box" />
         <div className="buy-button" onClick={buy}>
           {suc ? 'OK' : 'BUY NOW'}

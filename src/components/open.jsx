@@ -40,6 +40,12 @@ export const Open = () => {
 
   return(
     <div className="box-area">
+      <div className="no-box">
+        You don't have any boxes yet
+        <div className="login-button" style={{marginTop: '20px'}} >
+          BUY BOX
+        </div>
+      </div>
       {box.map((k, i) => (
         <div key={i} className="box">
           {i === win.i && <div className="success">
