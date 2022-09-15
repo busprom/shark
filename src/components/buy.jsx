@@ -11,8 +11,8 @@ export const Buy = () => {
     const init = async () => {
       const arr = [];
       const list = await window.cryptomore.parse.getMarketList();
-      for(let i = 0; i < list.length; i++) {
-        if(arr.length === 10) continue;
+      for(let i = 0; i < list.length; i++) { 
+        if(arr.length === 12) continue;
         list[i].info = await window.cryptomore.parse.getMeta(list[i].uri);
         if(list[i].info.SIB && (list[i].info.SIB === process.env.REACT_APP_GAME)) {
           arr.push(list[i]);
@@ -37,23 +37,23 @@ export const Buy = () => {
     try{
       let res = await window.cryptomore.methods.buyToken({...one, ...one.storage, owner: one.storage.vault});
       setSuc(i);
-      if(!res.err) setText('Successful purchase of a treasures!');
-      else setText('Someone has already bought this box, try another one!');
+      if(!res.err) setText(<><div>Successful purchase</div><div>of a treasures!</div></>);
+      else setText(<><div>Someone has already</div><div>bought this box,</div><div>try another one!</div></>);
     }catch(e){}
     setLoad(false);
   }
 
   return(
     <div className="main-box">
-      {box.map((k, i) => (
-        <div key={i} className="one-box">
-          {i === suc && <div className="success">{text}</div>}
-          <img src={load === i ? 'https://treasure.kotarosharks.io/6.png' : 'https://treasure.kotarosharks.io/5.png'} alt="box" />
-          <div className="buy-button" onClick={buy.bind(null, k, i)}>
-            {i === suc ? 'OK' : 'BUY NOW'}
-          </div>
+      <div className="one-box">
+        {suc && <div className="success">
+          <span>{text}</span>
+        </div>}
+        <img src={load ? 'https://treasure.kotarosharks.io/6.png' : 'https://treasure.kotarosharks.io/5.png'} alt="box" />
+        <div className="buy-button" onClick={buy}>
+          {suc ? 'OK' : 'BUY NOW'}
         </div>
-      ))}
+      </div>
     </div>
   )
 }

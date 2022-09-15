@@ -42,7 +42,10 @@ export const Open = () => {
     <div className="box-area">
       {box.map((k, i) => (
         <div key={i} className="box">
-          {i === win.i && <div className="success">Congrats! You won {win.win} SOL</div>}
+          {i === win.i && <div className="success">
+            <div>Congrats!</div>
+            <div>You won {win.win} SOL</div>
+          </div>}
           <div className="box-name">{k.name}</div>
           <div className="box-wrap">
             <img className="box-image" src={load === i ? 'http://treasure.kotarosharks.io/open.gif' : k.info.image} alt="box" />

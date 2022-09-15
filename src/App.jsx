@@ -28,9 +28,16 @@ function App() {
       <div className="header">
         <div className="header-top">
           <img onClick={setOpen.bind(null, false)} style={{cursor: 'pointer'}} src="/img/logo.png" alt="logo" />
-          {/* <div className="login-button" onClick={setOpen.bind(null, true)}>
-            CONNECT
-          </div> */}
+          
+          <div className="main-buttons">
+            <div style={{marginRight: '20px', opacity: open === false ? 1 : .5}} className="login-button" onClick={setOpen.bind(null, false)}>
+              BUY BOX
+            </div>
+            <div style={{opacity: open === true ? 1 : .5}} className="login-button" onClick={setOpen.bind(null, true)}>
+              OPEN BOX
+            </div>
+          </div>
+          
         </div>
         <div className="menu">
           <button onClick={setOpen.bind(null, false)} style={{borderRight: '1px solid #4725B1', opacity: open ? .5 : 1}}>Home</button>

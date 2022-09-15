@@ -5,12 +5,19 @@
 .header {
   width: 100%;
   background-image: url(../public/img/header.png);
+  background-size: cover;
+  height: 130px;
 }
 
 .header-top {
-  padding: 40px;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.main-buttons {
+  display: flex;
 }
 
 .login-button {
@@ -57,6 +64,8 @@
 
 .main {
   background-image: url(../public/img/main-bg.png);
+  background-size: cover;
+  /* background-repeat: no-repeat; */
 }
 
 .games {
@@ -99,7 +108,7 @@
   height: 100%;
   opacity: .6;
   display: flex;
-  font-size: 35px;
+  font-size: 20px;
   padding: 30px;
   align-items: center;
   text-align: center;
@@ -178,7 +187,7 @@
 .box-area {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   padding-bottom: 25px;
 }
