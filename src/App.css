@@ -44,13 +44,12 @@
 }
 
 .menu {
-  margin-top: 25px;
-  background-color: #2D0A81;
+  padding: 25px 0;
   color: #8573F0;
   display: flex;
   align-items: center;
+  justify-content: space-around;
   overflow: auto;
-  padding: 25px;
 }
 
 .menu button {
@@ -87,14 +86,16 @@
   font-size: 32px;
   font-family: '000webfont';
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
   transition: .2s;
-  background: #141233;
   margin-right: 25px;
 }
-
-.games-wrap:hover {
+.games-wrap:hover, .game-active {
   background: #1412339c
 }
 
@@ -162,13 +163,13 @@
   color: #ffffff;
   background-image: url(../public/img/buy-bg.png);
   background-size: 100% 100%;
-  width: 225px;
+  padding: 0 20px;
   height: 60px;
   display: flex;
   justify-content: center;
-  padding-top: 3px;
+  align-items: center;
   cursor: pointer;
-  font-size: 45px;
+  font-size: 35px;
   font-family: '000webfont';
   opacity: .8;
   z-index: 1;
@@ -310,17 +311,20 @@
   position: absolute;
 }
 
+.sollink {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  background-color: #2d0a81;
+}
 .solscan {
   margin-bottom: 20px;
   text-decoration: none;
-  text-align: center;
-  color: #8573F0;
-  border-bottom: 2px solid #8573F0;
+  color: #8573f0;
   transition: 0.2s;
   font-family: '000webfont';
   font-size: 32px;
 }
-
 .solscan:hover {
   text-decoration: inherit;
   opacity: .8;

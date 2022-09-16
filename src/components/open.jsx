@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 
-export const Open = () => {
+export const Open = ({ setOpen }) => {
 
   const [box, setBox] = useState([]);
   const [load, setLoad] = useState(false);
   const [win, setWin] = useState({});
+  const [no, setNo] = useState(false);
 
   useEffect(() => {
     const init = async () => {
       const wallet = await window.cryptomore.lib.getWallet();
       const list = await window.cryptomore.parse.getTokenList(wallet.publicKey);
+      if(list.length === 0) setNo(true);
       for(let i = 0; i < list.length; i++) {
         list[i].info = await window.cryptomore.parse.getMeta(list[i].uri);
         if(list[i].info.SIB) setBox(prev => ([...prev, list[i]]));
@@ -40,12 +42,14 @@ export const Open = () => {
 
   return(
     <div className="box-area">
-      <div className="no-box">
+
+      {no && <div className="no-box">
         You don't have any boxes yet
-        <div className="login-button" style={{marginTop: '20px'}} >
+        <div className="login-button" style={{marginTop: '20px'}} onClick={setOpen.bind(null, false)} >
           BUY BOX
         </div>
-      </div>
+      </div>}
+
       {box.map((k, i) => (
         <div key={i} className="box">
           {i === win.i && <div className="success">

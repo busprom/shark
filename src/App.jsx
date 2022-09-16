@@ -4,21 +4,6 @@ import { Buy } from './components/buy';
 import { Open } from './components/open';
 import { Table } from './components/table';
 
-const menu = [
-  {
-    img: 'https://treasure.kotarosharks.io/6.png',
-    price: '0.1',
-    max: '5.00',
-    min: '0.01'
-  },
-  {
-    img: 'https://treasure.kotarosharks.io/6.png',
-    price: '0.1',
-    max: '5.00',
-    min: '0.01'
-  }
-]
-
 const arr = [
   { name: 'Submarine', href: 'http://submarine.kotarosharks.io/' },
   { name: 'Coinflip', href: 'https://coinflip.kotarosharks.io' },
@@ -29,10 +14,24 @@ function App() {
   const [lots, setLots] = useState([]);
   const [open, setOpen] = useState(false);
 
+  const [games, setGames] = useState([]);
+  const [current, setCurrent] = useState(0);
+
+  const sol = <img className="solana-img" src='/img/solana.png' alt="box" />;
+
+  const findLots = async id => {
+    const game = await window.cryptomore.parse.getSIB({ id });
+    if(game.lots) setLots(game.lots);
+  }
+
   useEffect(() => {
     const init = async () => {
-      const game = await window.cryptomore.parse.getSIB({ id: process.env.REACT_APP_GAME });
-      if (game.lots) setLots(game.lots);
+      let g = await fetch('/games.json');
+      g = await g.json();
+      if(!g.lots[0] || !g.point) return;
+      window.cryptomore.lib.setPoint(g.point);
+      setGames(g.lots);
+      findLots(g.lots[0].id);
     }
     init();
   }, []);
@@ -54,58 +53,50 @@ function App() {
           </div>
 
         </div>
-      </div>
 
-      <div className="menu">
-      {menu.map((k, i) => (
-        <div key={i} className="games-wrap">
-          <div className="games-box">
-            <img className="box-img" src={k.img} alt="box" />
-            <div className="total-info" >
-              {k.price} SOL
+        {!open && <div className="menu">
+          {games.map((k, i) => (
+            <div key={i} className={'games-wrap' + (i === current ? ' game-active' : '')}
+              onClick={() => {
+                setCurrent(i);
+                findLots(k.id);
+              }}
+            >
+
+              <div className="games-info-wrap">
+                Min - {k.min} {sol}
+              </div>
+
+              <div className="games-box">
+                <img className="box-img" src={k.img} alt="box" />
+                <div className="total-info" >
+                  {k.price} SOL
+                </div>
+              </div>
+
+              <div className="games-info-wrap">
+                Max - {k.max} {sol}
+              </div>
+
             </div>
-          </div>
-          <div className="games-info-wrap">
-            <table className="games-info-table">
-              <tr>
-                <td>Max</td>
-                <td>
-                  <div className="games-info-wrap">
-                    {k.max}
-                    <img className="solana-img" src='/img/solana.png' alt="box" />
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>Min</td>
-                <td>
-                  <div className="games-info-wrap">
-                    {k.min}
-                    <img className="solana-img" src='/img/solana.png' alt="box" />
-                  </div>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      ))}
+          ))}
+        </div>}
+
       </div>
 
       <div className="main">
-        <div className="games">
-          {arr.map((k, i) => (
-            <a key={i} href={k.href} target="_blank" rel="noreferrer">
-              <img src={'/img/game-' + i + '.png'} alt={'game-' + i} />
-            </a>
-          ))}
-        </div>
-
-        {open ? <Open /> : <Buy />}
-
-
+        {open ? <Open setOpen={setOpen} /> : <Buy lot={games[current]} />}
       </div>
 
       <Table lots={lots} />
+
+      <div className="games">
+        {arr.map((k, i) => (
+          <a key={i} href={k.href} target="_blank" rel="noreferrer">
+            <img src={'/img/game-' + i + '.png'} alt={'game-' + i} />
+          </a>
+        ))}
+      </div>
 
       <div className="footer">
         <a href="https://cryptomore.me/" target="_blank" rel="noreferrer">
