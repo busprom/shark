@@ -13,13 +13,14 @@ const arr = [
 function App() {
   const [lots, setLots] = useState([]);
   const [open, setOpen] = useState(false);
-
   const [games, setGames] = useState([]);
   const [current, setCurrent] = useState(0);
+  const [tx, setTx] = useState([]);
 
   const sol = <img className="solana-img" src='/img/solana.png' alt="box" />;
 
   const findLots = async id => {
+    setTx([]);
     const game = await window.cryptomore.parse.getSIB({ id });
     if(game.lots) setLots(game.lots);
   }
@@ -85,10 +86,10 @@ function App() {
       </div>
 
       <div className="main">
-        {open ? <Open setOpen={setOpen} lot={games[current]} /> : <Buy lot={games[current]} />}
+        {open ? <Open setOpen={setOpen} lot={games[current]} /> : <Buy lot={games[current]} setTx={setTx} />}
       </div>
 
-      <Table lots={lots} img={games[current]} />
+      <Table lots={lots} img={games[current]} tx={tx} />
 
       <div className="games">
         {arr.map((k, i) => (

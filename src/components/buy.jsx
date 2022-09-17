@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 let one;
 
-export const Buy = ({ lot = {} }) => {
+export const Buy = ({ lot = {}, setTx }) => {
   const [load, setLoad] = useState(true);
   const [suc, setSuc] = useState('');
   const [qty, setQty] = useState([]);
-
+  
   useEffect(() => {
     if(!lot.id) return;
     setLoad(true);
@@ -21,6 +21,8 @@ export const Buy = ({ lot = {} }) => {
       }
       setQty(keys);
       setLoad(false);
+      const tx = await window.cryptomore.parse.getAllTx(lot.id);
+      setTx(tx);
     }
     init();
   }, [lot]);
