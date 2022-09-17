@@ -85,10 +85,10 @@ function App() {
       </div>
 
       <div className="main">
-        {open ? <Open setOpen={setOpen} /> : <Buy lot={games[current]} />}
+        {open ? <Open setOpen={setOpen} lot={games[current]} /> : <Buy lot={games[current]} />}
       </div>
 
-      <Table lots={lots} />
+      <Table lots={lots} img={games[current]} />
 
       <div className="games">
         {arr.map((k, i) => (

@@ -142,6 +142,20 @@
   margin-bottom: 100px;
 }
 
+.loader {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .7;
+  z-index: 20;
+}
+.loader img {
+  width: 100%;
+  height: 100%;
+}
+
 .success {
   position: absolute;
   left: 0;
@@ -150,13 +164,15 @@
   color: #ffffff;
   width: 100%;
   height: 100%;
-  opacity: .6;
-  display: flex;
+  opacity: .8;
   font-size: 20px;
-  padding: 30px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  text-align: center;
   justify-content: center;
+  text-align: center;
+  padding: 0 20px;
 }
 
 .buy-button {

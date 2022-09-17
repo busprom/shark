@@ -1,30 +1,45 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+let one;
 
 export const Buy = ({ lot = {} }) => {
-  const [load, setLoad] = useState(false);
-  const [box, setBox] = useState([]);
-  const [suc, setSuc] = useState(false);
-  const [text, setText] = useState('');
+  const [load, setLoad] = useState(true);
+  const [suc, setSuc] = useState('');
+  const [qty, setQty] = useState([]);
 
-  const buy = async (one, i) => {
-    // const list = await window.cryptomore.parse.getMarketList();
-    // console.log(list);
-    if (i === suc) {
-      setBox(prev => {
+  useEffect(() => {
+    if(!lot.id) return;
+    setLoad(true);
+    const init = async () => {
+      const list = await window.cryptomore.parse.getMarketList([]);
+      const keys = [];
+      for(let i = 0; i < list.length; i++) {
+        let info = await window.cryptomore.parse.getMeta(list[i].uri);
+        if(info.SIB && info.SIB === lot.id) {
+          if(!one) one = list[i];
+          keys.push(list[i]);
+        }
+      }
+      setQty(keys);
+      setLoad(false);
+    }
+    init();
+  }, [lot]);
+
+  const buy = async () => {
+    setLoad(true);
+    try {
+      const min = Math.ceil(0);
+      const max = Math.floor(qty.length - 1);
+      const rand = Math.floor(Math.random() * (max - min + 1)) + min;
+      one.mint = qty[rand];
+      const res = await window.cryptomore.methods.buyToken(qty[rand]);
+      setQty(prev => {
         prev = [...prev];
-        prev.splice(i, 1);
+        prev.splice(rand, 1);
         return prev;
       });
-      setSuc(false);
-      return;
-    }
-    setLoad(i);
-    try {
-      let res = await window.cryptomore.methods.buyToken(one);
-      setSuc(i);
-      if (!res.err) setText(<><div>Successful purchase</div><div>of a treasures!</div></>);
-      else setText(<><div>Someone has already</div><div>bought this box,</div><div>try another one!</div></>);
+      if (!res.err) setSuc('Successful purchase');
+      else setSuc('Someone has already bought this, try another one!');
     } catch (e) { }
     setLoad(false);
   }
@@ -37,13 +52,19 @@ export const Buy = ({ lot = {} }) => {
         </a>
       </div>
       <div className="one-box">
-        {suc && <div className="success">
-          <span>{text}</span>
+        {load && <div className="loader">
+          <img src="/img/load.gif" alt="load" />
         </div>}
-
-        <img style={{height: '300px'}} src={load ? 'https://treasure.kotarosharks.io/6.png' : lot.img} alt="box" />
+        {suc && <div className="success">
+          <div>{suc}</div>
+          <div className="buy-button" style={{width: '80%', marginTop: '25px'}} onClick={setSuc.bind(null, false)}>
+            OK
+          </div>
+        </div>}
+        <img style={{height: '300px'}} src={lot.img} alt="box" />
+        <div style={{color: '#ffffff'}}>Quantity - {load ? '?' : qty.length}</div>
         <div className="buy-button" onClick={buy} style={{ width: 'auto' }}>
-          {suc ? 'OK' : 'BUY FOR ' + lot.price + 'SOL'}
+          {'BUY FOR ' + lot.price + 'SOL'}
         </div>
       </div>
     </div>

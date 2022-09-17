@@ -10,6 +10,11 @@ export const Open = ({ setOpen }) => {
   useEffect(() => {
     const init = async () => {
       const wallet = await window.cryptomore.lib.getWallet();
+
+      // console.log(window.cryptomore);
+      // const tx = await window.cryptomore.lib.getTransactions(lot.id);
+      // console.log(tx);
+      
       const list = await window.cryptomore.parse.getTokenList(wallet.publicKey);
       if(list.length === 0) setNo(true);
       for(let i = 0; i < list.length; i++) {
